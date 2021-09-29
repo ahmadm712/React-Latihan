@@ -22,7 +22,7 @@ class App extends React.Component {
           <p>Profil</p>
         </header>
         <header className="App-header">
-          <h1>Halo, {this.state.count}</h1>
+          <h1 className="title">Halo, {this.state.count}</h1>
           <img src={logo} className="App-logo" alt="logo" />
           <view>
             <button onClick={()=>{this.handleClik()}}>+</button>
