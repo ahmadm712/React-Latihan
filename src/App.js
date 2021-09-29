@@ -1,34 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="header-app">
-      <h1>Ini adalah Header</h1>
-      <p>Me</p>
-      </header>
-      <header className="App-header">
-      
+class App extends React.Component {
+  handleClik(){
+    this.setState({count:this.state.count + 1})
+  }
+  handleClik1(){
+    this.setState({count:this.state.count - 1})
+  }
+  constructor(props) {
+    // const user = { name: "Ninja Ken", age: 14 };
+    super(props);
+    this.state = {count : 0};
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="header-app">
+          <p>Home</p>
+          <p>Profil</p>
+        </header>
+        <header className="App-header">
+          <h1>Halo, {this.state.count}</h1>
+          <img src={logo} className="App-logo" alt="logo" />
+          <view>
+            <button onClick={()=>{this.handleClik()}}>+</button>
+            <button onClick={()=>{this.handleClik1()}}>-</button>
+          {/* <button onClick={() => {this.handleClik("Guru Domba")}}>Guru Domba</button>
+        <button onClick={() => {this.handleClik("Ninja Ken 2")}}>Ninja Ken2</button> */}
+          </view>
+        </header>
 
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <footer>
-        <p>ini adalah Paragraf</p>
-      </footer>
-    </div>
-  );
+        <footer>
+          <p>ini adalah Paragraf</p>
+        </footer>
+      </div>
+    );
+  }
 }
 
 export default App;

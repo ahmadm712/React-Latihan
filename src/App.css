@@ -22,7 +22,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -40,4 +40,29 @@
   to {
     transform: rotate(360deg);
   }
+}
+button {
+  display: inline-block;
+  font-size: 16px;
+  width: 200px;
+  height: 48px;
+  border-radius: 48px;
+  margin-right: 24px;
+  margin-left: 24px;
+  color: #fff;
+  background-color: #66cc;
+  border: none;
+  outline: none;
+  box-shadow: 4px 4px #d8d8d8;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button:active {
+  position: relative;
+  top: 4px;
+  left: 4px;
+  box-shadow: none;
 }
