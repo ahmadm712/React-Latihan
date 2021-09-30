@@ -1,19 +1,21 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
+import "assets/css/style.css"
+import Homepage from 'scenes/Homepage'
 
 class App extends React.Component {
-  handleClik() {
-    this.setState({ count: this.state.count + 1 });
-  }
-  handleClik1() {
-    this.setState({ count: this.state.count - 1 });
-  }
-  constructor(props) {
-    // const user = { name: "Ninja Ken", age: 14 };
-    super(props);
-    this.state = { count: 0 };
-  }
+  // handleClik() {
+  //   this.setState({ count: this.state.count + 1 });
+  // }
+  // handleClik1() {
+  //   this.setState({ count: this.state.count - 1 });
+  // }
+  // constructor(props) {
+  //   // const user = { name: "Ninja Ken", age: 14 };
+  //   super(props);
+  //   this.state = { count: 0 };
+  // }
   render() {
     function CodinganAwal() {
       return(
@@ -69,13 +71,16 @@ class App extends React.Component {
         </div>
       );
     }
-    return (
-     
+    function ParentBoc(params) {
       <div className="ParentBox">
         <Foto/>
         <ProdukInfo name="Nike Air Jardon" category="Diskon"/>
         
       </div>
+    }
+    return (
+     <Homepage/>
+      
     );
   }
 }
