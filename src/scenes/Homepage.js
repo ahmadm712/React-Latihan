@@ -3,6 +3,8 @@ import Section from "elements/Section";
 import Header from "parts/Header";
 import HeroImage from "assets/images/hero-image.png";
 import Zoom from "react-reveal/Zoom";
+import Clients from "parts/Clients";
+
 
 export default function Homepage() {
   return (
@@ -40,6 +42,9 @@ export default function Homepage() {
               </div>
             </div>
           </div>
+          <Clients>
+            
+          </Clients>
         </Section>
       </main>
     </div>
