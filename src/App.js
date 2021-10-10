@@ -1,11 +1,22 @@
 import logo from "./logo.svg";
-import "./App.css";
-import React from "react";
-import "assets/css/style.css"
-import Homepage from 'scenes/Homepage'
+// import "./App.css";
+import {useState} from 'react'
+// import "assets/css/style.css"
+import Homepage from "scenes/Homepage";
+import Beranda from "component/Beranda";
+import Navbar from "component/Navbar";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Switch,
+} from "react-router-dom";
+import ManageBuku from "component/ManageBuku";
 
-class App extends React.Component {
-  // handleClik() {
+import React from 'react'
+
+function App() {
+    // handleClik() {
   //   this.setState({ count: this.state.count + 1 });
   // }
   // handleClik1() {
@@ -16,10 +27,10 @@ class App extends React.Component {
   //   super(props);
   //   this.state = { count: 0 };
   // }
-  render() {
-    function CodinganAwal() {
-      return(
-         // <div className="App">
+
+  function CodinganAwal() {
+    return (
+      // <div className="App">
       //   <header className="header-app">
       //     <p>Home</p>
       //     <p>Profil</p>
@@ -39,50 +50,78 @@ class App extends React.Component {
       //     <p>ini adalah Paragraf</p>
       //   </footer>
       // </div>
-      <div>
-
-      </div>
-      );
-    }
-    const category = "Sneaker"
-    function Foto() {
-      return(
-        <div className="Foto">
-        <img src="https://p.kindpng.com/picc/s/555-5550745_air-max-270-total-orange-best-nike-shoes.png" alt="Foto" />
-      </div>
-      );
-      
-      
-     
-    }
-    function ProdukInfo(props) {
-      const {category,name} = props;
-      return(
-        <div className="Deskripsi">
-          <p className="Cate">{category}</p>
-          <h1 className="Title">{name}</h1>
-          <p className="Price">IDR 30.000.000</p>
-          <p className="Info">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-          when an unknown printer took a galley of 
-          type and scrambled it to make a type specimen book. It has survived not only five centuries
-          </p>
-        </div>
-      );
-    }
-    function ParentBoc(params) {
-      <div className="ParentBox">
-        <Foto/>
-        <ProdukInfo name="Nike Air Jardon" category="Diskon"/>
-        
-      </div>
-    }
-    return (
-     <Homepage/>
-      
+      <div></div>
     );
   }
+  const category = "Sneaker";
+  function Foto() {
+    return (
+      <div className="Foto">
+        <img
+          src="https://p.kindpng.com/picc/s/555-5550745_air-max-270-total-orange-best-nike-shoes.png"
+          alt="Foto"
+        />
+      </div>
+    );
+  }
+  function ProdukInfo(props) {
+    const { category, name } = props;
+    return (
+      <div className="Deskripsi">
+        <p className="Cate">{category}</p>
+        <h1 className="Title">{name}</h1>
+        <p className="Price">IDR 30.000.000</p>
+        <p className="Info">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text
+          ever since the 1500s, when an unknown printer took a galley of type
+          and scrambled it to make a type specimen book. It has survived not
+          only five centuries
+        </p>
+      </div>
+    );
+  }
+  function ParentBoc(params) {
+    <div className="ParentBox">
+      <Foto />
+      <ProdukInfo name="Nike Air Jardon" category="Diskon" />
+    </div>;
+  }
+  const [books,setBooks] = useState(
+    [
+      {
+         _id:1, judul:'LaskarPelangi', pengarang:'Andrea Pirlo', harga:80000, stok:6 
+      }
+      ,
+      {
+        _id:2, judul:'Avataar', pengarang:'Ronaldo', harga:100000, stok:5
+      }
+    ]
+  );
+
+
+  return (
+    <div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact>
+            <Beranda />
+          </Route>
+          <Route path="/manajemen-buku">
+            <ManageBuku bookList={books} />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
-export default App;
+export default App
+
+
+
+
+
+
+
