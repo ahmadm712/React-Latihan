@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand bg-dark">
+      <nav className="navbar navbar-expand bg-white">
         <div className="container">
           <ul className="nav">
             <img
@@ -15,12 +15,12 @@ function Navbar() {
             />
           
           <li>
-            <Link to ="/" className="nav-link">
+            <Link to ="/" className="nav-link text-dark">
               Beranda
             </Link>
           </li>
           <li>
-            <Link to ="/manajemen-buku" className="nav-link">
+            <Link to ="/manajemen-buku" className="nav-link text-dark">
               Manajemen Buku
             </Link>
           </li>

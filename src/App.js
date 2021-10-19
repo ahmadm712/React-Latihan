@@ -99,6 +99,21 @@ function App() {
     ]
   );
 
+  function storeData(inputBook) {
+      console.log(inputBook)
+      alert("Data Berhasil Ditambahkan")
+  }
+
+  function updateData(inputBook) {
+    console.log(inputBook)
+    alert('Data Berhasil Di Update')
+    
+  }
+
+  function deleteData(book) {
+    console.log(book)
+    alert('Data Berhasil Di hapus')
+  }
 
   return (
     <div>
@@ -106,10 +121,10 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact>
-            <Beranda />
+            <Beranda bookList={books}/>
           </Route>
           <Route path="/manajemen-buku">
-            <ManageBuku bookList={books} />
+            <ManageBuku bookList={books} store={storeData} update={updateData} remove={deleteData}/>
           </Route>
         </Switch>
       </Router>
