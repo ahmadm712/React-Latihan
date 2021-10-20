@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
 // import "./App.css";
-import {useState} from 'react'
+import { useState, useEffect } from "react";
 // import "assets/css/style.css"
 import Homepage from "scenes/Homepage";
 import Beranda from "component/Beranda";
 import Navbar from "component/Navbar";
+import axios from "axios";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,10 +14,10 @@ import {
 } from "react-router-dom";
 import ManageBuku from "component/ManageBuku";
 
-import React from 'react'
+import React from "react";
 
 function App() {
-    // handleClik() {
+  // handleClik() {
   //   this.setState({ count: this.state.count + 1 });
   // }
   // handleClik1() {
@@ -73,10 +74,10 @@ function App() {
         <p className="Price">IDR 30.000.000</p>
         <p className="Info">
           Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text
-          ever since the 1500s, when an unknown printer took a galley of type
-          and scrambled it to make a type specimen book. It has survived not
-          only five centuries
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries
         </p>
       </div>
     );
@@ -87,32 +88,63 @@ function App() {
       <ProdukInfo name="Nike Air Jardon" category="Diskon" />
     </div>;
   }
-  const [books,setBooks] = useState(
-    [
-      {
-         _id:1, judul:'LaskarPelangi', pengarang:'Andrea Pirlo', harga:80000, stok:6 
-      }
-      ,
-      {
-        _id:2, judul:'Avataar', pengarang:'Ronaldo', harga:100000, stok:5
-      }
-    ]
-  );
+  const [books, setBooks] = useState([]);
+  useEffect(() => {
+    retrieveData();
+  }, []);
+
+  function retrieveData() {
+    axios
+      .get("http://localhost:4000/book")
+      .then((Response) => {
+        setBooks(Response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   function storeData(inputBook) {
-      console.log(inputBook)
-      alert("Data Berhasil Ditambahkan")
+    // console.log(inputBook);
+    // alert("Data Berhasil Ditambahkan");
+
+    axios
+      .post("http://localhost:4000/book/add", inputBook)
+      .then((res) => {
+        setBooks((prevBooks) => [...prevBooks, inputBook]);
+        alert("Data Berhasil di Tambah");
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
   }
 
   function updateData(inputBook) {
-    console.log(inputBook)
-    alert('Data Berhasil Di Update')
-    
+    // console.log(inputBook);
+    // alert("Data Berhasil Di Update");
+    axios
+      .put("http://localhost:4000/book/update/" + inputBook._id, inputBook)
+      .then((res) => {
+        retrieveData();
+        alert("Data Berhasil di Perbaharui");
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
   }
 
   function deleteData(book) {
-    console.log(book)
-    alert('Data Berhasil Di hapus')
+    // console.log(book);
+    // alert("Data Berhasil Di hapus");
+    axios.delete("http://localhost:4000/book/delete/" + book._id)
+    .then(() => {
+      retrieveData();
+      alert('Data Berhasil Di hapus')
+    })
+    .catch((error)=>{
+      console.log(error.response.data);
+    })
+
   }
 
   return (
@@ -121,10 +153,15 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact>
-            <Beranda bookList={books}/>
+            <Beranda bookList={books} />
           </Route>
           <Route path="/manajemen-buku">
-            <ManageBuku bookList={books} store={storeData} update={updateData} remove={deleteData}/>
+            <ManageBuku
+              bookList={books}
+              store={storeData}
+              update={updateData}
+              remove={deleteData}
+            />
           </Route>
         </Switch>
       </Router>
@@ -132,11 +169,4 @@ function App() {
   );
 }
 
-export default App
-
-
-
-
-
-
-
+export default App;
